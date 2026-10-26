@@ -1,8 +1,13 @@
 from functools import lru_cache
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parents[2]
+
+# LangSmith reads environment variables directly, outside Pydantic Settings.
+# Existing process environment values take precedence over the local .env file.
+load_dotenv(BASE_DIR / ".env", override=False)
 
 class Settings(BaseSettings):
     app_name: str = "HR Support RAG Copilot"

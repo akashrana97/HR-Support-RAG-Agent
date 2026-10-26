@@ -224,4 +224,8 @@ def ask(question: str):
         "trace": [],
         "citations": [],
     }
-    return agent_graph.invoke(initial)
+    return agent_graph.invoke(initial, config={
+        "run_name": "HR Support RAG Copilot",
+        "tags": ["hr-support", "kb-first"],
+        "metadata": {"app_env": settings.app_env},
+    })

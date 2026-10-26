@@ -260,6 +260,29 @@ curl -X POST http://127.0.0.1:8080/api/ingest \
 
 The response includes `message`, `file`, `chunks`, and `ids_created`. An invalid admin key returns `401`; an unsupported file extension returns `400`. Invalid chat input returns `422`.
 
+## LangSmith tracing (optional)
+
+LangSmith provides a nested view of the LangGraph run, including graph steps, model calls, retriever calls, timing, and errors. This complements the simple activity trace in the UI. Tracing is disabled in the example configuration.
+
+1. Create a LangSmith account at https://smith.langchain.com and generate an API key in Settings.
+2. Install the project dependencies, including `langsmith`.
+3. Update your local `.env`:
+
+```dotenv
+LANGSMITH_TRACING=true
+LANGSMITH_API_KEY=your-langsmith-api-key
+LANGSMITH_PROJECT=hr-support-rag-copilot
+LANGSMITH_ENDPOINT=https://api.smith.langchain.com
+```
+
+Use the endpoint for your LangSmith region or deployment if it differs. Restart `python run.py`, ask a demo question, then open the `hr-support-rag-copilot` project in LangSmith. Look for a run named **HR Support RAG Copilot**, tagged `hr-support` and `kb-first`. Expand the run to inspect routing, retrieval, evidence grading, web search, and any retry steps. Token usage is available where the model integration reports it; cost reporting depends on model pricing configuration.
+
+The application loads `.env` into the process environment because the tracing SDK reads its configuration directly. Existing shell environment values take precedence. Set `LANGSMITH_TRACING=false` and restart to disable tracing.
+
+**Data handling:** Enabling tracing sends run inputs and outputs to LangSmith, which can include questions, retrieved policy text, prompts, generated answers, and web results. Use fictional demo data while learning. Keep the API key in `.env`; never commit it. This integration does not add automatic redaction, evaluations, or production monitoring alerts.
+
+References: [LangSmith Python SDK](https://github.com/langchain-ai/langsmith-sdk/blob/main/python/README.md).
+
 ## Tests
 
 ```bash
