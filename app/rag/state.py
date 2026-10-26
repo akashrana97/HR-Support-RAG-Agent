@@ -6,7 +6,7 @@ from langchain_core.documents import Document
 
 class RouteDecision(BaseModel):
     route: Literal["kb", "direct"] = Field(
-        description="Use kb for questions needing Agentic RAG docs; direct for greetings/simple chat."
+        description="Use kb for HR policy and employee support questions; direct only for greetings or thanks."
     )
 
 

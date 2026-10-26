@@ -10,29 +10,29 @@
   <div class="shell">
     <aside class="sidebar">
       <div>
-        <div class="brand-badge">FDE Project</div>
-        <h1>IT Support<br/>Agentic RAG</h1>
-        <p class="muted">Private company knowledge first. External web only when evidence is weak.</p>
+        <div class="brand-badge">HR Workspace</div>
+        <h1>HR Support<br/>RAG Copilot</h1>
+        <p class="muted">Your HR knowledge base for policies, benefits, and employee support.</p>
       </div>
 
       <div class="workflow-card">
         <h3>LangGraph Workflow</h3>
         <div class="flow-step">1. Route question</div>
-        <div class="flow-step">2. Retrieve private KB</div>
+        <div class="flow-step">2. Retrieve HR policies</div>
         <div class="flow-step">3. Grade evidence</div>
-        <div class="flow-step">4. Web fallback if weak</div>
-        <div class="flow-step">5. Rewrite & retry</div>
+        <div class="flow-step">4. Tavily search if evidence is weak</div>
+        <div class="flow-step">5. Refine query when enabled</div>
         <div class="flow-step">6. Grounded answer</div>
       </div>
 
-      <button id="openUpload" class="secondary-btn">+ Add Company Document</button>
+      <button id="openUpload" class="secondary-btn">+ Add HR Document</button>
     </aside>
 
     <main class="main">
       <header class="topbar">
         <div>
           <span class="status-dot"></span>
-          <span>Enterprise Knowledge Copilot</span>
+          <span>HR Support RAG Copilot</span>
         </div>
         <span class="pill">Agentic RAG</span>
       </header>
@@ -41,20 +41,21 @@
         <div class="message assistant">
           <div class="avatar">AI</div>
           <div class="bubble">
-            <strong>How can I help with IT support?</strong>
-            <p>Try: “How do I connect to the company VPN?” or ask a question that may require current external vendor information.</p>
+            <strong>How can I help with HR support?</strong>
+            <p>Ask about leave, benefits, payroll, or onboarding. Answers use your HR knowledge base. Avoid sharing personal employee records.</p>
           </div>
         </div>
       </section>
 
       <section class="composer-wrap">
         <div class="examples">
-          <button class="example">How do I connect to the company VPN?</button>
-          <button class="example">What is our password reset policy?</button>
-          <button class="example">What is the latest Microsoft Teams outage guidance?</button>
+          <button class="example">How do I apply for annual leave?</button>
+          <button class="example">How do I report a payroll discrepancy?</button>
+          <button class="example">What should I complete during onboarding?</button>
+          <button class="example">What are the latest employee onboarding best practices?</button>
         </div>
         <form id="chatForm" class="composer">
-          <textarea aria-label="IT support question" id="question" rows="2" placeholder="Ask an IT support question..." required></textarea>
+          <textarea aria-label="HR support question" id="question" rows="2" placeholder="Ask an HR support question..." required></textarea>
           <button type="submit" class="send-btn">Ask Agent</button>
         </form>
       </section>
@@ -63,7 +64,7 @@
     <aside class="trace-panel">
       <details class="trace-details" open>
       <summary><h2>Agent Trace</h2></summary>
-      <p class="muted">Watch LangGraph decisions while the request runs.</p>
+      <p class="muted">See how HR policy evidence is retrieved and evaluated.</p>
       <div id="trace" class="trace-list"><div class="empty">No request yet.</div></div>
       <div class="source-box">
         <span>Final Source</span>
@@ -75,8 +76,8 @@
 
   <div id="uploadModal" class="modal hidden">
     <div class="modal-card">
-      <div class="modal-head"><h2>Ingest Company Document</h2><button id="closeUpload">×</button></div>
-      <p class="muted">Upload PDF, TXT, Markdown, or DOCX. The document is chunked, embedded, and indexed into Pinecone.</p>
+      <div class="modal-head"><h2>Add HR Knowledge Document</h2><button id="closeUpload">×</button></div>
+      <p class="muted">Upload HR policies or handbooks as PDF, TXT, Markdown, or DOCX. Use approved policy documents, not personal employee records.</p>
       <input id="adminKey" type="password" placeholder="Admin API key" />
       <input id="fileInput" type="file" accept=".pdf,.txt,.md,.docx" />
       <button id="uploadBtn" class="send-btn full">Index Document</button>

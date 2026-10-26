@@ -1,7 +1,7 @@
 [project]
-name = "it-support-rag-agent"
+name = "hr-support-rag-copilot"
 version = "0.1.0"
-description = "Add your description here"
+description = "HR support copilot with private policy retrieval and grounded answers"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
