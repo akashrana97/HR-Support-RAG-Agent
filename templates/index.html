@@ -37,7 +37,7 @@
         <span class="pill">Agentic RAG</span>
       </header>
 
-      <section id="chat" class="chat-area">
+      <section id="chat" class="chat-area" tabindex="0" aria-label="Chat conversation" aria-live="polite">
         <div class="message assistant">
           <div class="avatar">AI</div>
           <div class="bubble">
@@ -54,20 +54,22 @@
           <button class="example">What is the latest Microsoft Teams outage guidance?</button>
         </div>
         <form id="chatForm" class="composer">
-          <textarea id="question" rows="2" placeholder="Ask an IT support question..." required></textarea>
+          <textarea aria-label="IT support question" id="question" rows="2" placeholder="Ask an IT support question..." required></textarea>
           <button type="submit" class="send-btn">Ask Agent</button>
         </form>
       </section>
     </main>
 
     <aside class="trace-panel">
-      <h2>Agent Trace</h2>
+      <details class="trace-details" open>
+      <summary><h2>Agent Trace</h2></summary>
       <p class="muted">Watch LangGraph decisions while the request runs.</p>
       <div id="trace" class="trace-list"><div class="empty">No request yet.</div></div>
       <div class="source-box">
         <span>Final Source</span>
         <strong id="sourceUsed">—</strong>
       </div>
+      </details>
     </aside>
   </div>
 

@@ -35,3 +35,9 @@ document.getElementById('uploadBtn').onclick=async()=>{
   status.textContent='Indexing document...'; const fd=new FormData(); fd.append('file',file);
   try{const r=await fetch('/api/ingest',{method:'POST',headers:{'X-Admin-Key':key},body:fd}); const d=await r.json(); if(!r.ok) throw new Error(d.detail||'Upload failed'); status.textContent=`Indexed ${d.file}: ${d.chunks} chunks.`;}catch(e){status.textContent=`Error: ${e.message}`;}
 };
+// Keep activity compact on phones while leaving the conversation scrollable.
+const traceDetails = document.querySelector('.trace-details');
+const compactLayout = window.matchMedia('(max-width: 700px)');
+function updateTraceLayout() { traceDetails.open = !compactLayout.matches; }
+updateTraceLayout();
+compactLayout.addEventListener('change', updateTraceLayout);
